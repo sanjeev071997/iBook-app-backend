@@ -188,12 +188,17 @@ export const contactController = async (req, res) => {
             <title> iBook App - Contact </title>
             </head>
             <body>
-            <p>Hello <b>Admin</b>,</p>
+            <p>Hello <b>iBook App Team</b>,</p>
             <p>You got a new message from <b>${name}</b>:</p>
             <p style="padding: 12px; border-left: 4px solid #d0d0d0; font-style: italic;">Contact for user email:-  ${email}</p>
-            <p style="padding: 12px; border-left: 4px solid #d0d0d0; font-style: italic;">User message:- ${newMessage}</p>
+            <p style="padding: 12px; border-left: 4px solid #d0d0d0; font-style: italic;"> ${newMessage} </p>
             <p>Best wishes,<br>iBook App Team</p>
-            </body></html>`,
+            <hr style="border:none;border-top:1px solid #eee" />
+                <div style="float:right;color:#aaa;font-size:0.8em;line-height:1;font-weight:400; overflow:hidden;">
+                <p>iBook App Inc</p>
+                <p>03 Udaipurwati, jhunjhunu</p>
+                <p>India</p>
+            </div></body></html>`,
         })
         res.status(200).send({
             success: true,
@@ -299,7 +304,7 @@ export const forgotPasswordController = async (req, res) => {
                     <hr style="border:none;border-top:1px solid #eee" />
                     <div style="float:right;color:#aaa;font-size:0.8em;line-height:1;font-weight:400; overflow:hidden;">
                     <p>iBook App Inc</p>
-                    <p>1600 Amphitheatre Parkway</p>
+                    <p>03 Udaipurwati, jhunjhunu</p>
                     <p>India</p>
                     </div></div></div>
                     </body></html>`,
@@ -365,7 +370,7 @@ export const resetPasswordController = async (req, res) => {
 };
 
 // Send Email Controller
-export const sendEmailController = async(req, res) => {
+export const sendEmailController = async (req, res) => {
     if (req.body.name == "", req.body.email == "", req.body.subject == "", req.body.newMessage == "") {
         return res.status(200).send({
             message: "All Field Required",
@@ -385,7 +390,7 @@ export const sendEmailController = async(req, res) => {
             },
         });
         transporter.sendMail({
-            from:process.env.MAIL_SENDER ,
+            from: process.env.MAIL_SENDER,
             to: email,
             subject: `New message from ${subject}`,
             html: `<!DOCTYPE html>
@@ -405,7 +410,7 @@ export const sendEmailController = async(req, res) => {
                     <hr style="border:none;border-top:1px solid #eee" />
                     <div style="float:right;color:#aaa;font-size:0.8em;line-height:1;font-weight:400; overflow:hidden;">
                     <p>iBook App Inc</p>
-                    <p>1600 Amphitheatre Parkway</p>
+                    <p>03 Udaipurwati, jhunjhunu</p>
                     <p>India</p>
                     </div></div></div>
                 </body></html>`,

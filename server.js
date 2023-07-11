@@ -53,12 +53,12 @@ app.use('/api/v1/post/', postRoutes);
 app.use('/api/v1/nodes/',nodesRoutes);
 app.use('/api/v1/admin/', adminRoutes)
 
-// // static files
-// app.use(express.static(path.join(__dirname,  './client/build')));
+// static files
+app.use(express.static(path.join(__dirname,  './client/build')));
 
-// app.get('*', (req, res) => {
-//     res.sendFile(path.join(__dirname, './client/build/index.html'))
-// });
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, './client/build/index.html'))
+});
 
 
 const server = app.listen(PORT, () => console.log(`Server running on PORT ${PORT}`))

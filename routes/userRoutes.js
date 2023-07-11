@@ -11,6 +11,7 @@ import {
     resetPasswordController,
     contactController,
     sendEmailController,
+    ChatGptController,
 } from '../controllers/userController.js'
 
 
@@ -20,15 +21,16 @@ const router = express.Router();
 router.post('/login', loginController);
 router.post('/register', registerController);
 router.get('/logout', logoutController);
-router.post('/contact', contactController);
-router.post('/send-email', sendEmailController);
 router.post('/forgot-password', forgotPasswordController);
 router.post('/reset-password/:token', resetPasswordController);
 
 // auth
 router.put('/:id', authMiddleware, updateProfileController);
 router.post('/getUserData', authMiddleware, authController)
-router.put('/change-password/:id', authMiddleware, changePasswordController)
+router.post('/contact', authMiddleware, contactController);
+router.post('/send-email', authMiddleware, sendEmailController);
+router.put('/change-password/:id', authMiddleware, changePasswordController);
+router.post('/chatgpt', ChatGptController);
 
 
 export default router;

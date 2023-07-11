@@ -28,7 +28,6 @@ export const createTodoController = async (req, res) => {
 // Get all todo
 export const allTodoController = async (req, res) => {
     try {
-        // const post = await Post.find({ userId: req.body.userId ,  "active": true } );
         const post = await Post.find({ userId: req.body.userId });
         res.status(200).send({
             success: true,

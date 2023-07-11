@@ -4,6 +4,16 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import crypto from 'crypto';
 import nodemailer from 'nodemailer';
+import { Configuration, OpenAIApi } from 'openai';
+import dotenv from 'dotenv';
+// dotenv config
+dotenv.config();
+
+const config = new Configuration({
+    apiKey: process.env.CHATGPT_API_KEY
+});
+
+const openai = new OpenAIApi(config);
 
 // Register Controller
 export const registerController = async (req, res) => {
@@ -429,3 +439,15 @@ export const sendEmailController = async (req, res) => {
         });
     }
 };
+
+export const ChatGptController = async (req, res) => {
+    const { prompt } = req.body;
+    const completion = await openai.createCompletion({
+        model: "text-davinci-003",
+        max_tokens: 1000,
+        temperature: 0,
+        prompt: prompt,
+
+    });
+    res.send(completion.data.choices[0].text)
+}
